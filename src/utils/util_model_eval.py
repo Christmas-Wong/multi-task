@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-10-20 10:07:05
-LastEditTime: 2021-11-07 12:33:34
+LastEditTime: 2021-11-07 14:13:42
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /mdap-multi-task/src/utils/util_model_eval.py
@@ -38,7 +38,7 @@ def multitask_eval(multitask_model,
             labels = features_dict[task_name]["test"][index]["label"]
             labels = le_dict[task_name].transform([labels])[0]
             
-            inputs = tokenizer(batch, return_tensors="pt")["input_ids"]
+            inputs = tokenizer(batch, return_tensors="pt", max_length=512, pad_to_max_length=True)["input_ids"]
             inputs = inputs.to(device=torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
 
             logits = multitask_model(inputs, task_name=task_name)[0]

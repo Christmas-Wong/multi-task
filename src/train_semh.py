@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-10-16 22:21:50
-LastEditTime: 2021-11-07 12:37:37
+LastEditTime: 2021-11-07 22:05:33
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /multi_task_demo/src/test.
@@ -69,5 +69,6 @@ if __name__ == '__main__':
         train_dataset=train_dataset
         )
     trainer.train()
+    save_model(tokenizer, multitask_model, data_args.data_save_dir)
     multitask_eval(multitask_model,tokenizer, dataset_dict,label_encoder_dict, AVERAGE_DICT)
-    save_model(tokenizer, multitask_model, training_args.data_save_dir)
+
